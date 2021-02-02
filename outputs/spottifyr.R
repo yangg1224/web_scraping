@@ -34,11 +34,16 @@ radiohead %>%
 swifty <- get_artist_audio_features('taylor swift')
 saveRDS(swifty, "inputs/swifty.rds")
 
-swifty <- readRDS("inputs/swifty.rds")
+The_Chainsmokers  <- get_artist_audio_features('The Chainsmokers ')
+saveRDS(The_Chainsmokers, "inputs/The_Chainsmokers.rds")
 
-tibble(name = c(swifty$artist_name, radiohead$artist_name),
-       year = c(swifty$album_release_year, radiohead$album_release_year),
-       valence = c(swifty$valence, radiohead$valence)
+
+swifty <- readRDS("inputs/swifty.rds")
+The_Chainsmokers <- readRDS("inputs/The_Chainsmokers.rds")
+
+tibble(name = c(swifty$artist_name, radiohead$artist_name,The_Chainsmokers$artist_name),
+       year = c(swifty$album_release_year, radiohead$album_release_year, The_Chainsmokers$album_release_year),
+       valence = c(swifty$valence, radiohead$valence,The_Chainsmokers$valence)
 ) %>% 
   ggplot(aes(x = year, y = valence, color = name)) +
   geom_point() +
